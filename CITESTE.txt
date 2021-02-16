@@ -1,0 +1,22 @@
+Ce am facut?
+
+1. Am modificat structura tabelelor MySQL:
+    - catalog: am adaugat campurile este_admin si este_elev (de tip INT), ca sa stiu daca un user este admin sau elev
+    - users: am sters numele si prenumele, si am adaugat id_user - este cheie straina la tabelulul users
+    
+2. Am adaugat urmatoarele functii PHP:
+    - Login() - returneaza din sesiune user_id-ul utilizatorului logat, sau 0 daca nu avem utilizator logat
+    - CitesteDateUser($id_user) - citeste din baza de date informatii despre un anumit utilizator
+    - EsteElev($id_user) - returneaza TRUE sau FALSE dupa cum utilizatorul este sau nu elev
+    - EsteAdmin($id_user) - returneaza TRUE sau FALSE dupa cum utilizatorul este sau nu admin
+    
+    - CreareAlerta($mesaj_alerta, $tip_alerta) - creaza un mesaj flash (mesaj care apare o singura data)
+    - AfisareAlerta() - afiseaza mesajul flash, daca exista
+    
+3. Am modificat prin cod:
+    - am verificat ca utilizatorul curent este admin cu expresia EsteAdmin(Login()) - poate nu peste tot
+    - am combinat index.php si indexuser.php intr-un singur fisier, index.php. Daca utilizatorul nu este logat se afiseaza formularul de autentificare, daca este logat se fiseaza pagina propriu-zisa
+    - am folosi variabila $user_autentificat, cu informatii despre utilizatorul curent, necesare in multe locuri
+    - am modificat mai multe interogari ca sa se combine coloanele din tabelele catalog si users (dupa modificarile facute, nu mai aveam numele si prenumele elevilor in tabela catalog)
+    - am adaugat in modul-setari.php un vector in care am scris materiile - pentru a putea folosi un marcaj select la adaugarea notelor
+    - am moddificat partea de adaugare note
